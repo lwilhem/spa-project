@@ -16,5 +16,25 @@
     <input type="password" name="register-password-check" id="register-password-check">
     <input type="submit" value="Create your account">
 </form>
+
+<?php
+
+    require_once './controllers/user.php';
+    require_once './controllers/database.php';
+
+    if(!empty($_POST['register-firstname']) && !empty($_POST['register-lastname']) && !empty($_POST['register-email']) && !empty($_POST['register-password']))
+    {
+        if($_POST['register-password'] === $_POST['register-password-check'])
+        {
+            $user = new User($_POST['register-email'], $_POST['register-password'], $_POST['register-firstname'], $_POST['register-lastname']);
+
+            $database = new Database;
+            $database->createUser($user);
+
+        } else {
+            echo '<b>Password don\'t match.</b>';
+            }
+    }
+?>
 </body>
 </html>
