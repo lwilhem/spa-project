@@ -39,12 +39,19 @@ class Database
         return $users;
     }
 
-    public function logUser(): void
+    public function createAnimal(Animal $animal): void
     {
-        // Check Credentials Validity
-        // Check user Role (0 or 1)
-        // Create a $_SESSION with appropriate permissions
+        $query = $this->connection->prepare('
+            INSERT INTO `animal` (`name`, `type`)
+            VALUES (:name, :type)
+            ');
+
+        $query->execute([
+            'name' => $animal->name,
+            'type' => $animal->type,
+        ]);
     }
+
 }
 
 
