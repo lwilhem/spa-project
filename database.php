@@ -6,7 +6,7 @@ class Database
 
     public function __construct()
     {
-        $this->connection = new PDO('mysql:host=127.0.0.1;dbname=php_td6', 'root', 'root');
+        $this->connection = new PDO('mysql:host=127.0.0.1:3306;dbname=rendu-php-poo', 'root', 'root');
     }
 
     public function createUser(User $user): void

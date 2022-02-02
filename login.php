@@ -19,8 +19,8 @@
 
 <?php
 
-    require_once './controllers/user.php';
-    require_once './controllers/database.php';
+    require_once 'user.php';
+    require_once 'database.php';
 
     if(!empty($_POST['register-firstname']) && !empty($_POST['register-lastname']) && !empty($_POST['register-email']) && !empty($_POST['register-password']))
     {
@@ -31,6 +31,7 @@
             $database = new Database;
             $database->createUser($user);
 
+            getUsers();
         } else {
             echo '<b>Password don\'t match.</b>';
             }
