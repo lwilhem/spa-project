@@ -11,26 +11,26 @@
 </head>
 <body>
 <section class="container">
-    <form action="" method="post" class="d-flex justify-content-around align-items-center"> <!-- REGISTER FORM -->
-        <label for="register-firstname">
+    <form action="" method="post" class="d-flex flex-column"> <!-- REGISTER FORM -->
+        <label for="register-firstname" class="form-label">
             <span>First Name : </span>
-            <input type="text" name="register-firstname" id="register-firstname">
+            <input type="text" name="register-firstname" id="register-firstname" class="form-control">
         </label>
-        <label for="register-lastname">
+        <label for="register-lastname" class="form-label">
             <span>Last Name : </span>
-            <input type="text" name="register-lastname" id="register-lastname">
+            <input type="text" name="register-lastname" id="register-lastname" class="form-control">
         </label>
-        <label for="register-email">
+        <label for="register-email" class="form-label">
             <span>Email : </span>
-            <input type="email" name="register-email" id="register-email">
+            <input type="email" name="register-email" id="register-email" class="form-control">
         </label>
-        <label for="register-password">
+        <label for="register-password" class="form-label">
             <span>Password : </span>
-            <input type="password" name="register-password" id="register-password">
+            <input type="password" name="register-password" id="register-password" class="form-control">
         </label>
-        <label for="register-password-check">
+        <label for="register-password-check" class="form-label">
             <span>Confirm Password : </span>
-            <input type="password" name="register-password-check" id="register-password-check">
+            <input type="password" name="register-password-check" id="register-password-check" class="form-control">
         </label>
 
         <input type="submit" value="Create your account">

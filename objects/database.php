@@ -52,6 +52,19 @@ class Database
         ]);
     }
 
+    public function getAnimals(): array
+    {
+        $animals = [];
+
+        $query = $this->connection->query('SELECT * FROM `animal`');
+
+        while($row = $query->fetch(PDO::FETCH_ASSOC)){
+            $animal = new Animal($row['name'], $row['type']);
+            $animals[] = $animal;
+        }
+        return $animals;
+    }
+
 }
 
 
