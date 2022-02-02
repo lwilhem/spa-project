@@ -12,8 +12,8 @@ class Database
     public function createUser(User $user): void
     {
         $query = $this->connection->prepare('
-            INSERT INTO `user` (`email`, `first_name`, `last_name`, `password`)
-            VALUES (:email, :first_name, :last_name, :password)
+            INSERT INTO `user` (`email`, `first_name`, `last_name`, `password`, `admin`)
+            VALUES (:email, :first_name, :last_name, :password, :admin)
             ');
 
         $query->execute([
@@ -21,6 +21,7 @@ class Database
             'first_name' => $user->firstname,
             'last_name' => $user->lastname,
             'password' => password_hash($user->password, PASSWORD_ARGON2I),
+            'admin' => 0,
         ]);
     }
 
@@ -36,6 +37,13 @@ class Database
         }
         var_dump($users);
         return $users;
+    }
+
+    public function logUser(): void
+    {
+        // Check Credentials Validity
+        // Check user Role (0 or 1)
+        // Create a $_SESSION with appropriate permissions
     }
 }
 

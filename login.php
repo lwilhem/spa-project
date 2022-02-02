@@ -5,15 +5,32 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/style.css">
     <title>RENDU POO - Login</title>
 </head>
 <body>
 <form action="" method="post"> <!-- REGISTER FORM -->
-    <input type="text" name="register-firstname" id="register-firstname">
-    <input type="text" name="register-lastname" id="register-lastname">
-    <input type="email" name="register-email" id="register-email">
-    <input type="password" name="register-password" id="register-password">
-    <input type="password" name="register-password-check" id="register-password-check">
+    <label for="register-firstname">
+        <span>First Name : </span>
+        <input type="text" name="register-firstname" id="register-firstname">
+    </label>
+    <label for="register-lastname">
+        <span>Last Name : </span>
+        <input type="text" name="register-lastname" id="register-lastname">
+    </label>
+    <label for="register-email">
+        <span>Email : </span>
+        <input type="email" name="register-email" id="register-email">
+    </label>
+    <label for="register-password">
+        <span>Password : </span>
+        <input type="password" name="register-password" id="register-password">
+    </label>
+    <label for="register-password-check">
+        <span>Confirm Password : </span>
+        <input type="password" name="register-password-check" id="register-password-check">
+    </label>
+
     <input type="submit" value="Create your account">
 </form>
 
@@ -31,7 +48,7 @@
             $database = new Database;
             $database->createUser($user);
 
-            $database->getUsers();
+            //$database->getUsers();
         } else {
             echo '<b>Password don\'t match.</b>';
             }
