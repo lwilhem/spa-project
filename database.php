@@ -6,7 +6,7 @@ class Database
 
     public function __construct()
     {
-        $this->connection = new PDO('mysql:host=127.0.0.1:3306;dbname=rendu-php-poo', 'root', 'root');
+        $this->connection = new PDO('mysql:host=127.0.0.1:3306;dbname=php-poo-bdd', 'root', 'root');
     }
 
     public function createUser(User $user): void
@@ -18,8 +18,8 @@ class Database
 
         $query->execute([
             'email' => $user->email,
-            'first_name' => $user->firstName,
-            'last_name' => $user->lastName,
+            'first_name' => $user->firstname,
+            'last_name' => $user->lastname,
             'password' => password_hash($user->password, PASSWORD_ARGON2I),
         ]);
     }
@@ -34,7 +34,7 @@ class Database
             $user = new User($row['email'], $row['password'], $row['first_name'], $row['last_name']);
             $users[] = $user;
         }
-
+        var_dump($users);
         return $users;
     }
 }

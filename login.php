@@ -8,7 +8,7 @@
     <title>RENDU POO - Login</title>
 </head>
 <body>
-<form action="" method="post">
+<form action="" method="post"> <!-- REGISTER FORM -->
     <input type="text" name="register-firstname" id="register-firstname">
     <input type="text" name="register-lastname" id="register-lastname">
     <input type="email" name="register-email" id="register-email">
@@ -31,7 +31,7 @@
             $database = new Database;
             $database->createUser($user);
 
-            getUsers();
+            $database->getUsers();
         } else {
             echo '<b>Password don\'t match.</b>';
             }
