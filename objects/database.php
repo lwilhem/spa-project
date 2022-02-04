@@ -47,10 +47,11 @@ class Database
             SELECT * FROM `user`
             WHERE `first_name`="'. $auth->userFirstName .'" and `last_name`="'. $auth->userLastName .'"
             ');
+        $count = $query->rowCount();
         $row = $query->fetch(PDO::FETCH_ASSOC);
         $verify = password_verify($auth->userPassword, $row['password']);
 
-        if($verify === true)
+        if($verify === true && $count == 1 && !empty($row))
         {
             $_SESSION['isAdmin'] = $row['admin'];
             $_SESSION['userId'] = $row['id'];
