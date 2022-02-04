@@ -39,31 +39,28 @@ class Database
         return $users;
     }
 
-    public function createAnimal(Animal $animal): void
+    public function userLogin(Auth $auth): void
     {
-        $query = $this->connection->prepare('
-            INSERT INTO `animal` (`name`, `type`, `owner`)
-            VALUES (:name, :type, :owner)
+        //var_dump($auth);
+
+        $query = $this->connection->query('
+            SELECT * FROM `user`
+            WHERE `first_name`="'. $auth->userFirstName .'" and `last_name`="'. $auth->userLastName .'"
             ');
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        $verify = password_verify($auth->userPassword, $row['password']);
 
-        $query->execute([
-            'name' => $animal->name,
-            'type' => $animal->type,
-            'owner' => $owner->owner,
-        ]);
-    }
-
-    public function getAnimals(): array
-    {
-        $animals = [];
-
-        $query = $this->connection->query('SELECT * FROM `animal`');
-
-        while($row = $query->fetch(PDO::FETCH_ASSOC)){
-            $animal = new Animal($row['name'], $row['type'], $row['owner']);
-            $animals[] = $animal;
+        if($verify === true)
+        {
+            $_SESSION['isAdmin'] = $row['admin'];
+            $_SESSION['userId'] = $row['id'];
+            $_SESSION['userFirstName'] = $row['first_name'];
+            $_SESSION['userLastName'] = $row['last_name'];
+        }else{
+            echo 'error';
         }
-        return $animals;
+
+        //var_dump($count);
     }
 }
 

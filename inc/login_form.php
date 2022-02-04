@@ -13,6 +13,13 @@
 <?php
     if(!empty($_POST['login-lastname']) && !empty($_POST['login-firstname']) && !empty($_POST['login-password']))
     {
-        var_dump($_POST);
+        require_once './objects/database.php';
+        require_once './objects/auth.php';
+
+        $database = new Database;
+        $userAuth = new Auth($_POST['login-firstname'], $_POST['login-lastname'], $_POST['login-password']);
+
+        $database->userLogin($userAuth);
+
     }
 ?>
