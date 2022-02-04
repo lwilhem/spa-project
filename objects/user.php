@@ -14,10 +14,4 @@ class User
         $this->firstname = $firstname;
         $this->lastname = $lastname;
     }
-
-    public function getFullName(): string
-    {
-        return $this->firstname . ' ' . $this->lastname;
-    }
-
 }

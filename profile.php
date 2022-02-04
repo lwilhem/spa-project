@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,5 +11,12 @@
     <title>RENDU POO - Profile</title>
 </head>
 <body>
+    <h1>PROFILE</h1>
+    <?php
+        if(empty($_SESSION))
+        {
+            include './inc/login_form.php';
+        }
+    ?>
 </body>
 </html>

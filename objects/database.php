@@ -42,13 +42,14 @@ class Database
     public function createAnimal(Animal $animal): void
     {
         $query = $this->connection->prepare('
-            INSERT INTO `animal` (`name`, `type`)
-            VALUES (:name, :type)
+            INSERT INTO `animal` (`name`, `type`, `owner`)
+            VALUES (:name, :type, :owner)
             ');
 
         $query->execute([
             'name' => $animal->name,
             'type' => $animal->type,
+            'owner' => $owner->owner,
         ]);
     }
 
@@ -59,12 +60,11 @@ class Database
         $query = $this->connection->query('SELECT * FROM `animal`');
 
         while($row = $query->fetch(PDO::FETCH_ASSOC)){
-            $animal = new Animal($row['name'], $row['type']);
+            $animal = new Animal($row['name'], $row['type'], $row['owner']);
             $animals[] = $animal;
         }
         return $animals;
     }
-
 }
 
 

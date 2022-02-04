@@ -51,6 +51,11 @@
             $database->createUser($user);
 
             //$database->getUsers();
+            $host  = $_SERVER['HTTP_HOST'];
+            $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+            $extra = 'profile.php';
+            header("Location: http://$host$uri/$extra");
+            exit;
         } else {
             echo '<b>Password don\'t match.</b>';
             }
