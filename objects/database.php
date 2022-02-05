@@ -12,14 +12,13 @@ class Database
     public function createUser(User $user): void
     {
         $query = $this->connection->prepare('
-            INSERT INTO `user` (`email`, `first_name`, `last_name`, `password`, `admin`)
-            VALUES (:email, :first_name, :last_name, :password, :admin)
+            INSERT INTO `user` (`email`, `username`, `password`, `admin`)
+            VALUES (:email, :username , :password, :admin)
             ');
 
         $query->execute([
             'email' => $user->email,
-            'first_name' => $user->firstname,
-            'last_name' => $user->lastname,
+            'username' => $user->username,
             'password' => password_hash($user->password, PASSWORD_ARGON2I),
             'admin' => 0,
         ]);
@@ -32,10 +31,10 @@ class Database
         $query = $this->connection->query('SELECT * FROM `user`');
 
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-            $user = new User($row['email'], $row['password'], $row['first_name'], $row['last_name']);
+            $user = new User($row['email'], $row['password'], $row['username']);
             $users[] = $user;
         }
-        var_dump($users);
+        //var_dump($users);
         return $users;
     }
 
@@ -45,7 +44,7 @@ class Database
 
         $query = $this->connection->query('
             SELECT * FROM `user`
-            WHERE `first_name`="'. $auth->userFirstName .'" and `last_name`="'. $auth->userLastName .'"
+            WHERE `username`="'. $auth->userName .'"
             ');
         $count = $query->rowCount();
         $row = $query->fetch(PDO::FETCH_ASSOC);
@@ -55,10 +54,9 @@ class Database
         {
             $_SESSION['isAdmin'] = $row['admin'];
             $_SESSION['userId'] = $row['id'];
-            $_SESSION['userFirstName'] = $row['first_name'];
-            $_SESSION['userLastName'] = $row['last_name'];
+            $_SESSION['username'] = $row['username'];
         }else{
-            echo 'error';
+            echo 'Incorrect Password or Username';
         }
 
         //var_dump($count);

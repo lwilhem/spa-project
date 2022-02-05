@@ -12,13 +12,9 @@
 <body>
 <section class="container">
     <form action="" method="post" class="d-flex flex-column"> <!-- REGISTER FORM -->
-        <label for="register-firstname" class="form-label">
+        <label for="register-username" class="form-label">
             <span>First Name : </span>
-            <input type="text" name="register-firstname" id="register-firstname" class="form-control">
-        </label>
-        <label for="register-lastname" class="form-label">
-            <span>Last Name : </span>
-            <input type="text" name="register-lastname" id="register-lastname" class="form-control">
+            <input type="text" name="register-username" id="register-username" class="form-control">
         </label>
         <label for="register-email" class="form-label">
             <span>Email : </span>
@@ -41,11 +37,11 @@
     require_once './objects/user.php';
     require_once './objects/database.php';
 
-    if(!empty($_POST['register-firstname']) && !empty($_POST['register-lastname']) && !empty($_POST['register-email']) && !empty($_POST['register-password']))
+    if(!empty($_POST['register-username']) && !empty($_POST['register-email']) && !empty($_POST['register-password']))
     {
         if($_POST['register-password'] === $_POST['register-password-check'])
         {
-            $user = new User($_POST['register-email'], $_POST['register-password'], $_POST['register-firstname'], $_POST['register-lastname']);
+            $user = new User($_POST['register-email'], $_POST['register-password'], $_POST['register-username']);
 
             $database = new Database;
             $database->createUser($user);

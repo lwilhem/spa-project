@@ -2,14 +2,12 @@
 
 class Auth
 {
-    public string $userFirstName;
-    public string $userLastName;
+    public string $userName;
     public string $userPassword;
 
-    public function __construct($userFirstName, $userLastName,$userPassword)
+    public function __construct($userName, $userPassword)
     {
-        $this->userFirstName = $userFirstName;
-        $this->userLastName = $userLastName;
+        $this->userName = $userName;
         $this->userPassword = $userPassword;
     }
 }

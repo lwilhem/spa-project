@@ -8,17 +8,31 @@
         header("Location: http://$host$uri/$extra");
         exit;
     }
+    include './inc/head.php'
 ?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RENDU POO - Admin</title>
-</head>
-<body>
+<section class="admin-dashboard-wrapper">
+    <h1 class="text-uppercase">hello <?php echo $_SESSION['username'] ?></h1>
+    <div class="user-list-wrapper">
+    <?php
+        require_once './objects/database.php';
+        require_once './objects/user.php';
+        require_once './objects/animal.php';
 
-</body>
-</html>
+        $database = new Database;
+        $users = $database->getUsers();
+
+        foreach ($users as $user)
+        {
+            echo '
+                <div class="user-list-item">
+                    <span class="list-username">' . $user->username . '</span>
+                    <span class="list-password">' . $user->email . '</span>
+                </div>
+            ';
+        }
+    ?>
+    </div>
+</section>
+<?php
+    include './inc/footer.php';
+?>

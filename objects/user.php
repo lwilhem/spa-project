@@ -2,16 +2,14 @@
 
 class User
 {
-    public string $firstname;
-    public string $lastname;
+    public string $username;
     public string $email;
     public string $password;
 
-    public function __construct($email, $password, $firstname, $lastname)
+    public function __construct($email, $password, $username)
     {
         $this->email = $email;
         $this->password = $password;
-        $this->firstname = $firstname;
-        $this->lastname = $lastname;
+        $this->username = $username;
     }
 }
